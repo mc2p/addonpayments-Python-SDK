@@ -120,6 +120,15 @@ class Payer(FieldsCommentMixin, XmlMixin):
 
 
 @attr.s
+class DccInfoRebateBasic(FieldsAmountMixin, XmlMixin):
+    """
+    Class representing the basic DCC information for Rebate
+    """
+    rate = Field(default='', validator=DccValidator.rate)
+    xml_root_tag = 'dccinfo'
+
+
+@attr.s
 class DccInfo(XmlMixin):
     """
     Class representing the DCC information
