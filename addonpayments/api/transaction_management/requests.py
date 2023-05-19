@@ -8,6 +8,7 @@ from attr import ib as Field
 from addonpayments.api.transaction_management.validators import TransactionManagementValidator
 from addonpayments.api.common.requests import ApiRequest
 from addonpayments.api.mixins import FieldsAmountMixin, FieldsCommentMixin
+from addonpayments.api.elements import DccInfoRebateBasic, DccInfoWithAmount
 from addonpayments.validators import RequestValidator
 
 
@@ -48,6 +49,26 @@ class Rebate(FieldsAmountMixin, FieldsCommentMixin, ApiRequest):
         """
         # Empty values represents amount and currency
         return [self.timestamp, self.merchantid, self.orderid, self.amount, self.currency, '']
+
+
+@attr.s
+class RebateWithDccInfoBasic(Rebate):
+    """
+    Class representing a rebate request with basic dcc info to be sent to API.
+    """
+    dccinfo = Field(default=None, validator=attr.validators.instance_of(DccInfoRebateBasic))
+
+    object_fields = ['dccinfo']
+
+
+@attr.s
+class RebateWithDccInfo(Rebate):
+    """
+    Class representing a rebate request with dcc info to be sent to API.
+    """
+    dccinfo = Field(default=None, validator=attr.validators.instance_of(DccInfoWithAmount))
+
+    object_fields = ['dccinfo']
 
 
 @attr.s
