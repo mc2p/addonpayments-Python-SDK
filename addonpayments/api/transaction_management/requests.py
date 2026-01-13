@@ -18,7 +18,7 @@ class Settle(FieldsCommentMixin, ApiRequest):
     Class representing a settle request to be sent to API.
     """
     pasref = Field(default='', validator=TransactionManagementValidator.pasref)
-    amount = Field(default='', convert=str, validator=RequestValidator.amount)
+    amount = Field(default='', converter=str, validator=RequestValidator.amount)
 
     request_type = 'settle'
 

@@ -17,7 +17,7 @@ class Cvn(XmlMixin):
     Class representing the card verification details.
     """
     number = Field(default='', validator=CvnValidator.number)
-    presind = Field(default='', convert=str, validator=CvnValidator.presind)
+    presind = Field(default='', converter=str, validator=CvnValidator.presind)
 
 
 @attr.s
@@ -134,7 +134,7 @@ class DccInfo(XmlMixin):
     Class representing the DCC information
     """
     ccp = Field(default='', validator=DccValidator.ccp)
-    type = Field(convert=str, default='', validator=DccValidator.type)
+    type = Field(converter=str, default='', validator=DccValidator.type)
 
 
 @attr.s
@@ -174,4 +174,4 @@ class Mpi(XmlMixin):
     """
     cavv = Field(default='', validator=MpiValidator.cavv)
     xid = Field(default='', validator=MpiValidator.xid)
-    eci = Field(convert=str, default='', validator=MpiValidator.eci)
+    eci = Field(converter=str, default='', validator=MpiValidator.eci)

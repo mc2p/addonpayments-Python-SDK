@@ -35,7 +35,7 @@ class FieldsAmountMixin(object):
     This mixin add amount fields and necessary definition for parse to XML
     """
     currency = Field(default=None, validator=RequestValidator.currency)
-    amount = Field(default='', convert=str, validator=RequestValidator.amount)
+    amount = Field(default='', converter=str, validator=RequestValidator.amount)
     xml_grouped_fields = [('amount', 'currency')]
 
 
